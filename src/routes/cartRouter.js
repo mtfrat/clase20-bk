@@ -1,5 +1,5 @@
 const  express = require('express')
-const cartDao = require('../daos/index')
+const cartDao = require('../daos/indexDao')
 
 const router = express.Router()
 
