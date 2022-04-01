@@ -3,7 +3,7 @@ const fsProductDao = require ('./fsProductDao')
 const fsCartDao = require ('./fsCartDao')
 const MongoCartDao = require('./mongoCartDao')
 
-const dbToUse = 'fsCart'
+const dbToUse = 'fsProduct'
 
 let productDao
 let cartDao
@@ -26,4 +26,4 @@ switch (dbToUse) {
 }
 
 module.exports = productDao
-// module.exports = cartDao
+//module.exports = cartDao

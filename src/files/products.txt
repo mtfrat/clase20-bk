@@ -10,6 +10,7 @@
     "id": 1
   },
   {
+    "1": 400,
     "title": "Lápiz",
     "price": 200,
     "photo": "https://cdn1.iconfinder.com/data/icons/drawing-tools-5/512/pencil-256.png",

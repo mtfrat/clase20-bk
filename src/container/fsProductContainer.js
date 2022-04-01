@@ -20,11 +20,11 @@ class FsProductContainer {
     }
 
     addProduct = async (product) => {
-        try {
+        try {        
             const getProducts = await fs.promises.readFile(process.cwd()+this.archivo, 'utf-8')
             let getProductsObj = JSON.parse(getProducts)
             let newId = Object.keys(getProductsObj).length + 1
-        
+            
             if([Object.keys(getProductsObj).length] > 0){
                 product[Object.keys(getProductsObj).length - 1].timestamp = Date.now()
                 product[Object.keys(getProductsObj).length - 1].id = newId
@@ -46,10 +46,10 @@ class FsProductContainer {
     }
 
 	deleteProduct = async (productID) =>{
-        const getProducts = await fs.promises.readFile(process.cwd()+this.archivo, 'utf-8')
-        let getProductsObj = JSON.parse(getProducts)
-
         try {
+            const getProducts = await fs.promises.readFile(process.cwd()+this.archivo, 'utf-8')
+            let getProductsObj = JSON.parse(getProducts)
+    
             for(let i in getProductsObj){
                 if(parseInt(getProductsObj[i].id) === parseInt(productID))
                     getProductsObj.splice(i, 1)
@@ -65,14 +65,18 @@ class FsProductContainer {
 	}
 
     updateProduct = async (update,productID) =>{
-        let productIDInt = Number(productID) -1
-        const getProducts = await fs.promises.readFile(process.cwd()+this.archivo, 'utf-8')
-        let getProductsObj = JSON.parse(getProducts)
         try {
+            let productIDInt = Number(productID) -1
+            const getProducts = await fs.promises.readFile(process.cwd()+this.archivo, 'utf-8')
+            let getProductsObj = JSON.parse(getProducts)
+            let objKeys = Object.keys(getProductsObj[0])
+
             for(let i in getProductsObj){
                 if(parseInt(getProductsObj[i].id) === parseInt(productID)){
-                    for(let x in getProductsObj[i]){
-                        if(Object.keys(getProductsObj[i])[x] == JSON.stringify(Object.keys(update)[0])){
+                    for(let x in objKeys){
+                        console.log(objKeys[1]);
+                        if(objKeys[x] == JSON.stringify(Object.keys(update)[0]).replace(/['"]+/g, '')){
+                            console.log("entre3");
                             getProductsObj[i][x] = Object.values(update)[0]
                         }
                     }
